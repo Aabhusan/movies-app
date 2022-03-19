@@ -9,7 +9,7 @@ workspace:
 
 steps:
 - name: build
-  image: docker
+  image: node:lts
   environment:
     USERNAME:
       from_secret: docker_username
