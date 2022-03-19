@@ -16,6 +16,11 @@ steps:
     PASSWORD:
       from_secret: docker_password
   commands:
+  - apt update
+  - apt install apt-transport-https ca-certificates curl software-properties-common
+  - -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+  - apt-cache policy docker-ce
   - apt install docker-ce
   - echo $PASSWORD | docker login -u $USERNAME --password-stdin
   - cd client
