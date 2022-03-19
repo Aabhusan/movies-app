@@ -9,7 +9,7 @@ workspace:
 
 steps:
 - name: build
-  image: node:lts
+  image: node:latest
   environment:
     USERNAME:
       from_secret: docker_username
@@ -18,7 +18,7 @@ steps:
   commands:
   - apt update -y
   - apt install apt-transport-https ca-certificates curl software-properties-common -y
-  #- -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+  - -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
   - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
   - apt-cache policy docker-ce
   - apt install docker-ce -y
