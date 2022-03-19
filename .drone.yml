@@ -7,23 +7,24 @@ name: test
 workspace:
   path: /myproject
 
-steps:
-- name: build
-  image: docker
-  environment:
-    USERNAME:
-      from_secret: docker_username
-    PASSWORD:
-      from_secret: docker_password
-  commands:
-  - echo $PASSWORD | docker login -u $USERNAME --password-stdin
-  - service docker start
-  - cd client
-  - docker build -t react-app .
-  - docker tag react-app aabhusan/react-app:latest
-  - docker push aabhusan/react-app:latest
 
-  - cd ../server
-  - docker build -t node-app .
-  - docker tag node-app aabhusan/node-app:latest
-  - docker push aabhusan/node-app:latest
+steps:
+- name: react-app
+  image: plugins/docker
+  settings:
+    repo: aabhusan/react-app
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+  dockerfile: client/Dockerfile
+
+- name: node-app
+  image: plugins/docker
+  settings:
+    repo: aabhusan/node-app
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+  dockerfile: server/Dockerfile
