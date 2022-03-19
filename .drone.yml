@@ -1,0 +1,29 @@
+---
+kind: pipeline
+type: docker
+name: test
+
+
+workspace:
+  path: /myproject
+
+
+  
+- name: build
+  image: node:apline
+  environment:
+    USERNAME:
+      from_secret: docker_username
+    PASSWORD:
+      from_secret: docker_password
+  commands:
+  - echo $PASSWORD | docker login -u $USERNAME --password-stdin
+  - cd client
+  - docker build -t react-app .
+  - docker tag react-app aabhusan/react-app:latest
+  - docker push aabhusan/react-app:latest
+
+  - cd ../server
+  - docker build -t node-app .
+  - docker tag node-app aabhusan/node-app:latest
+  - docker push aabhusan/node-app:latest
