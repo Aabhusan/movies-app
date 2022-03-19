@@ -9,7 +9,7 @@ workspace:
 
 steps:
 - name: build
-  image: node:apline
+  image: node
   environment:
     USERNAME:
       from_secret: docker_username
