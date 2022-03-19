@@ -17,7 +17,7 @@ steps:
       from_secret: docker_username
     password:
       from_secret: docker_password
-  dockerfile: /myproject/client/Dockerfile
+    dockerfile: /myproject/client/Dockerfile
 
 - name: node-app
   image: plugins/docker
@@ -27,4 +27,4 @@ steps:
       from_secret: docker_username
     password:
       from_secret: docker_password
-  dockerfile: /myproject/server/Dockerfile
+    dockerfile: /myproject/server/Dockerfile
