@@ -7,8 +7,7 @@ name: test
 workspace:
   path: /myproject
 
-
-  
+steps:
 - name: build
   image: node:apline
   environment:
