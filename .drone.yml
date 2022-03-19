@@ -17,7 +17,7 @@ steps:
       from_secret: docker_password
   commands:
   - echo $PASSWORD | docker login -u $USERNAME --password-stdin
-  - systemctl start docker
+  - service docker start
   - cd client
   - docker build -t react-app .
   - docker tag react-app aabhusan/react-app:latest
