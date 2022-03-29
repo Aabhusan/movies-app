@@ -1,4 +1,4 @@
-Instruction
+Instructions
 
 - clone this repository : git clone https://github.com/Aabhusan/movies-app.git
 - setup the drone ci server and runner 
